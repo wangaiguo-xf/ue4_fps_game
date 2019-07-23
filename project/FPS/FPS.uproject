@@ -11,8 +11,15 @@
 			"AdditionalDependencies": [
 				"AIModule",
 				"UMG",
-				"Engine"
+				"Engine",
+				"SpatialGDK"
 			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "SpatialGDK",
+			"Enabled": true
 		}
 	]
 }
