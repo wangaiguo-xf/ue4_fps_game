@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
+#include "c_worker.h"
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
@@ -8,6 +9,24 @@
 
 class AFPSCharacter;
 class UFPSLoginWidget;
+
+USTRUCT(BlueprintType)
+struct FDeploymentInfo {
+	GENERATED_BODY()
+
+		UPROPERTY(BlueprintReadOnly)
+		FString DeploymentId;
+	UPROPERTY(BlueprintReadOnly)
+		FString DeploymentName;
+	UPROPERTY(BlueprintReadOnly)
+		FString LoginToken;
+	UPROPERTY(BlueprintReadOnly)
+		int32 PlayerCount = 0;
+	UPROPERTY(BlueprintReadOnly)
+		int32 MaxPlayerCount = 0;
+	UPROPERTY(BlueprintReadOnly)
+		bool bAvailable = false;
+};
 
 /**
  * 
@@ -30,6 +49,32 @@ public:
 	FORCEINLINE void SetUserName(const FString& UserName) { UserName_ = UserName; }
 
 	FORCEINLINE FString UserName() { return UserName_; }
+
+	//DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FDeploymentsEvent, const TArray<FDeploymentInfo>&, DeploymentList);
+	//UPROPERTY(BlueprintAssignable)
+	//	FDeploymentsEvent OnDeploymentsReceived;
+
+	//DECLARE_DYNAMIC_MULTICAST_DELEGATE(FLoadingEvent);
+	//UPROPERTY(BlueprintAssignable)
+	//	FLoadingEvent OnLoadingStarted;
+	//UPROPERTY(BlueprintAssignable)
+	//	FLoadingEvent OnLoadingFailed;
+
+	void Populate(const Worker_Alpha_LoginTokensResponse* Deployments);
+	FString LatestPIToken;
+	const char * LatestPITokenData;
+	FString LatestLoginToken;
+
+	void QueryDeployments();
+
+	FTimerHandle QueryDeploymentsTimer;
+
+	UFUNCTION(BlueprintCallable)
+		void JoinDeployment();
+
+	UFUNCTION(BlueprintCallable)
+		void SetLoadingScreen(UUserWidget* LoadingScreen);
+
 
 protected:
 
@@ -100,8 +145,9 @@ protected:
 	void ServerLookUp_Implementation(float CurrPitch);
 
 	//*********** Player Input end***********
-
+	void QueryPIT();
 private:
+	TSubclassOf<UFPSLoginWidget> LoginWidgetClass;
 
 	UFPSLoginWidget * LoginWidget;
 
