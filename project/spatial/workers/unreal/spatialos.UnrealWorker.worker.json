@@ -97,8 +97,7 @@
         "${IMPROBABLE_WORKER_ID}",
         "+linkProtocol",
         "Tcp",
-        "-NoVerifyGC",
-		"-OverrideSpatialNetworking"
+        "-NoVerifyGC"
       ]
     }
   }
