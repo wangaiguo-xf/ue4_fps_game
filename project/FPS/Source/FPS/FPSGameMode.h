@@ -38,6 +38,7 @@ public:
 
 	AFPSCharacter* GetOwnCharacter(const FString& UserName);
 
+	virtual void StartPlay();
 private:
 
 	int PlayerCount;

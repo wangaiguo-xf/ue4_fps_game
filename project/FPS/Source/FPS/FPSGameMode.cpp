@@ -7,7 +7,10 @@
 #include "FPSAIController.h"
 #include "FPSPlayerController.h"
 #include "Kismet/GameplayStatics.h"
-
+//#include "EngineUtils.h"
+#include "Engine.h"
+#include "GDKLogging.h"
+#include "LogMacros.h"
 
 AFPSGameMode::AFPSGameMode()
 	: Super()
@@ -116,4 +119,14 @@ AFPSCharacter* AFPSGameMode::GetOwnCharacter(const FString& UserName)
 	}
 
 	return Ret;
+}
+
+void AFPSGameMode::StartPlay()
+{
+	ENetRole Role_ = Role;
+	ENetMode NM = GetNetMode();
+	FString Text01 = FString::Printf(TEXT("AFPSGameMode::StartPlay !!!!! %d  %d"), Role_, NM);
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, Text01);
+
+	UE_LOG(LogGDK, Log, TEXT("AFPSGameMode::StartPlay !!!!! %d  %d"), , Role_, NM);
 }

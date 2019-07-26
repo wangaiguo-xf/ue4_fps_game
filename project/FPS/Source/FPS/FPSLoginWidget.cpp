@@ -4,6 +4,7 @@
 #include "Components/EditableTextBox.h"
 #include "Components/Button.h"
 #include "FPSPlayerController.h"
+#include "DeploymentsPlayerController.h"
 
 
 UFPSLoginWidget::UFPSLoginWidget(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
@@ -57,7 +58,7 @@ void UFPSLoginWidget::OnBtnLoginClick()
 		//TravelURL.AddOption(TEXT("locator"));
 		//TravelURL.AddOption(TEXT("playeridentity=MY_PLAYER_IDENTITY_TOKEN"));
 		//TravelURL.AddOption(TEXT("login=MY_LOGIN_TOKEN"));
-		if (AFPSPlayerController* FPC = Cast<AFPSPlayerController>(PC))
+		if (ADeploymentsPlayerController* FPC = Cast<ADeploymentsPlayerController>(PC))
 		{
 			FPC->JoinDeployment();
 		}
