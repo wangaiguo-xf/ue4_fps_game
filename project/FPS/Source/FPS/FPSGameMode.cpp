@@ -128,5 +128,5 @@ void AFPSGameMode::StartPlay()
 	FString Text01 = FString::Printf(TEXT("AFPSGameMode::StartPlay !!!!! %d  %d"), Role_, NM);
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, Text01);
 
-	UE_LOG(LogGDK, Log, TEXT("AFPSGameMode::StartPlay !!!!! %d  %d"), , Role_, NM);
+	UE_LOG(LogGDK, Log, TEXT("AFPSGameMode::StartPlay !!!!! %d  %d"), Role_, NM);
 }

@@ -32,7 +32,7 @@ void AFPSPlayerController::BeginPlay()
 	FString Text01 = FString::Printf(TEXT("AFPSPlayerController::BeginPlay !!!!! %d  %d"), Role_, NM);
 	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, Text01);
 
-	UE_LOG(LogGDK, Log, TEXT("AFPSPlayerController::BeginPlay !!!!! %d  %d"), , Role_, NM);
+	UE_LOG(LogGDK, Log, TEXT("AFPSPlayerController::BeginPlay !!!!! %d  %d"), Role_, NM);
 }
 
 void AFPSPlayerController::GetLifetimeReplicatedProps(TArray< FLifetimeProperty > & OutLifetimeProps) const
